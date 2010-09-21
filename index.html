@@ -28,8 +28,18 @@
         </div>
     </div>
     <script>
+        var lastQuery = "";
+
         function search(query) {
+            // Save last query so that it is possible to check response later
+            lastQuery = query;
+
             $.getJSON("http://otter.topsy.com/search.js?q=" + query + "&callback=?", function(data) {
+                // Check if received result is really for the last query
+                if (data.request.parameters.q != lastQuery) {
+                    return;
+                }
+
                 // Clear search results
                 $(".searchResults .item:visible").remove();
 
@@ -50,11 +60,13 @@
         }
 
         // Handle keypresses in query field
-        $("#query").keypress(function() {
+        $("#query").keyup(function() {
             // Executing code with timeout, so that field value is already updated
             setTimeout(function() {
+                // Get current query
                 var query = $("#query").val();
-                if (query.length > 0) {
+                // Search current query if it's non-empty and not the same as previous
+                if (query.length > 0 && query != lastQuery) {
                     search(query);
                 }
             }, 100);
