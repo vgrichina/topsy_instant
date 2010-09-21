@@ -1,0 +1,42 @@
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.requestForm #query {
+    width: 400px;
+    font-size: 1.2em;
+}
+
+.requestForm {
+    margin-bottom: 2em;
+}
+
+.item .headerLink {
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 0.2em;
+}
+
+.item .url {
+    font-size: 0.9em;
+    color: green;
+}
+
+.item .text {
+    margin-top: 0.5em;
+}
+
+.info {
+    font-size: 0.9em;
+}
+
+.info .user img {
+    width: 20px;
+    position: relative;
+    top: 5px;
+    border: solid 1px lightgray;
+}
+
+.info .date {
+    color: gray;
+}
