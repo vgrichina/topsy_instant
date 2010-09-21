@@ -11,6 +11,10 @@ body {
     margin-bottom: 2em;
 }
 
+.item {
+    margin-top: 1.5em;
+}
+
 .item .headerLink {
     font-size: 1.1em;
     display: block;

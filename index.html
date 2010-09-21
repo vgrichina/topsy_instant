@@ -9,7 +9,7 @@
         <input type="text" id="query">
     </div>
     <div class="searchResults">
-        <div class="item">
+        <div class="item" style="display: none;">
             <a class="headerLink" href="http://example.com">Example link</a>
             <div class="url">example.com</div>
             <div class="text">This is some example text</div>
@@ -27,5 +27,22 @@
             </div>
         </div>
     </div>
+    <script>
+        $.getJSON("http://otter.topsy.com/search.js?q=instant&callback=?", function(data) {
+            // Loop through all received items
+            $.each(data.response.list, function(i, item) {
+                // Create item element from template
+                var template = $(".searchResults .item:first-child");
+                var itemElement = template.clone().appendTo(".searchResults");
+                // Populate item element
+                itemElement.find(".headerLink").attr("href", item.url);
+                itemElement.find(".headerLink").text(item.title);
+                itemElement.find(".url").text(item.url);
+                itemElement.find(".text").html(item.highlight);
+                // Show item element
+                itemElement.show();
+            });
+        });
+    </script>
 </body>
 </html>
