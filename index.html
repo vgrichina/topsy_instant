@@ -74,7 +74,7 @@
                     itemElement.find(".user a").text(item.trackback_author_nick);
                     itemElement.find(".date").text(new Date(item.trackback_date * 1000).toDateString());
                     itemElement.find(".tweets a").text(item.trackback_total + " more");
-                    itemElement.find(".tweets a").attr(item.topsy_trackback_url);
+                    itemElement.find(".tweets a").attr("href", item.topsy_trackback_url);
                     // Show item element
                     itemElement.show();
                 });
