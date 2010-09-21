@@ -28,21 +28,38 @@
         </div>
     </div>
     <script>
-        $.getJSON("http://otter.topsy.com/search.js?q=instant&callback=?", function(data) {
-            // Loop through all received items
-            $.each(data.response.list, function(i, item) {
-                // Create item element from template
-                var template = $(".searchResults .item:first-child");
-                var itemElement = template.clone().appendTo(".searchResults");
-                // Populate item element
-                itemElement.find(".headerLink").attr("href", item.url);
-                itemElement.find(".headerLink").text(item.title);
-                itemElement.find(".url").text(item.url);
-                itemElement.find(".text").html(item.highlight);
-                // Show item element
-                itemElement.show();
+        function search(query) {
+            $.getJSON("http://otter.topsy.com/search.js?q=" + query + "&callback=?", function(data) {
+                // Clear search results
+                $(".searchResults .item:visible").remove();
+
+                // Loop through all received items
+                $.each(data.response.list, function(i, item) {
+                    // Create item element from template
+                    var template = $(".searchResults .item:first-child");
+                    var itemElement = template.clone().appendTo(".searchResults");
+                    // Populate item element
+                    itemElement.find(".headerLink").attr("href", item.url);
+                    itemElement.find(".headerLink").text(item.title);
+                    itemElement.find(".url").text(item.url);
+                    itemElement.find(".text").html(item.highlight);
+                    // Show item element
+                    itemElement.show();
+                });
             });
+        }
+
+        // Handle keypresses in query field
+        $("#query").keypress(function() {
+            // Executing code with timeout, so that field value is already updated
+            setTimeout(function() {
+                var query = $("#query").val();
+                if (query.length > 0) {
+                    search(query);
+                }
+            }, 100);
         });
+
     </script>
 </body>
 </html>
