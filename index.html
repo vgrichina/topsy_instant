@@ -53,6 +53,12 @@
                     itemElement.find(".headerLink").text(item.title);
                     itemElement.find(".url").text(item.url);
                     itemElement.find(".text").html(item.highlight);
+                    itemElement.find(".user img").attr("src", item.topsy_author_img);
+                    itemElement.find(".user a").attr("href", item.topsy_author_url);
+                    itemElement.find(".user a").text(item.trackback_author_nick);
+                    itemElement.find(".date").text(new Date(item.trackback_date * 1000).toDateString());
+                    itemElement.find(".tweets a").text(item.trackback_total + " more");
+                    itemElement.find(".tweets a").attr(item.topsy_trackback_url);
                     // Show item element
                     itemElement.show();
                 });
