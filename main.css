@@ -44,3 +44,7 @@ body {
 .info .date {
     color: gray;
 }
+
+.highlight-term {
+    font-weight: bold;
+}
