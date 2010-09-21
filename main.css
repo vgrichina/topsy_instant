@@ -48,3 +48,10 @@ body {
 .highlight-term {
     font-weight: bold;
 }
+
+.footer {
+    margin-top: 3em;
+    font-size: 0.9em;
+    color: gray;
+    border-top: 1px solid lightgray;
+}
